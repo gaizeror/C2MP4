@@ -15,7 +15,7 @@ $result = $host.ui.PromptForChoice($title, $message, $options, 0)
 $sourcePath = "$env:USERPROFILE\AppData\Roaming\Pluralsight\videos\"
 do
 {    
-$items = Get-ChildItem -Path $sourcePath | sort LastWriteTime | Select LastWriteTime
+$items = Get-ChildItem -Path $sourcePath -Recurse -Filter "*.mp4" | sort LastWriteTime | Select LastWriteTime
  
 # enumerate the items array
 foreach ($item in $items)
