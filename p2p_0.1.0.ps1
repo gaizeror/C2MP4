@@ -151,7 +151,7 @@ switch ($result)
         {
             $serialNum = 0
             $lastDir = $csvFile.directory[0]
-            for ($i=0; $i -le $csvFile.videos.Length; $i++)
+            for ($i=0; $i -le $csvFile.videos.Length - 1; $i++)
             {
                 if ($csvFile.videos[$i] -match $regex)
                 {
@@ -164,26 +164,14 @@ switch ($result)
                     else
                     {
                         $serialNum=1
+                        $lastDir = $csvFile.directory[$i]
                     }
                     $newdir = $csvFile.directory[$i]
                 $video = Remove-InvalidFileNameChars $video
                 Move-Item $pathsList[$i] "$destDir\$newdir\$serialNum. $video.mp4"
-                $sourcedirs = Get-ChildItem "$sourcePath" |Where-Object { $_.LastWriteTime -gt $begin -and $_.LastWriteTime -lt $end}| sort LastWriteTime |select FullName
                      
-                #Write-Host $pathsList[$i] "$destDir\$newdir\$serialNum. $video.mp4"
-               # Write-Host $csvFile.directory[$i]
-
             }
-            $dirs = Get-ChildItem -Path $destDir | sort CreationTime |select Name 
-            $i = 0
-            foreach ($dir in $dirs)
-            {
-                $i++
-                $newname = $dir.Name
-                Rename-Item "$destDir\$newname" -NewName "$i. $newname"
-            }
-
-        }
+          }
     
     
         1 
@@ -209,20 +197,19 @@ switch ($result)
                     $newdir = $csvFile.directory[$i]
                 $video = Remove-InvalidFileNameChars $video
                 Copy-Item $pathsList[$i] "$destDir\$newdir\$serialNum. $video.mp4"
-                #Write-Host "$i - $pathsList[$i]"
-               # Write-Host $csvFile.directory[$i]
-
             }
-            $dirs = Get-ChildItem -Path $destDir | sort CreationTime |select Name 
-            $i = 0
-            foreach ($dir in $dirs)
-            {
-                $i++
-                $newname = $dir.Name
-                Rename-Item "$destDir\$newname" -NewName "$destDir\$i. $newname"
-               # Write-Host "$destDir\$newname" -NewName "$destDir\$i. $newname"
-            }
+           
         }
+    }
+
+    $dirs = Get-ChildItem -Path $destDir | sort CreationTime |select Name 
+    $i = 0
+    foreach ($dir in $dirs)
+    {
+        $i++
+        $newname = $dir.Name
+        Rename-Item "$destDir\$newname" -NewName "$destDir\$i. $newname"
+        # Write-Host "$destDir\$newname" -NewName "$destDir\$i. $newname"
     }
     
     Write-Host "Done. Press any key to continue"
