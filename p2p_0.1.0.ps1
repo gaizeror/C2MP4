@@ -77,7 +77,8 @@ Function Get-FileName($initialDirectory)
 }
 
 $selection = Get-FileName
-$csvFile = Import-Csv $selection
+$csvFile = Import-Csv $selection | where {$_.directory -match "[a-zA-Z]" -and $_.videos -match "[a-zA-Z]"}
+
 
 # End of part 3
 
