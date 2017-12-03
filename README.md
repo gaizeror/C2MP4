@@ -4,10 +4,10 @@ Courses to MP4 <br />
 Hello, <br />
 C2MP4 is a Script which downloads and orders courses from several websites to local pc.<br />
 
-Prereq:<br />
+Prerequisites:<br />
 1. Powershell <br />
 2. Python installed<br />
-3. youtube-dl pythin library installed<br />
+3. youtube-dl python library installed<br />
 
 Steps:<br />
 1. Download python<br />
