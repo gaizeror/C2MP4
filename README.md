@@ -1,8 +1,8 @@
-# C2P
+# C2MP4
 Courses to MP4 <br />
 
 Hello, <br />
-P2P is a Script which generates downloaded Pluralsight videos with randomized names and folders to some new, arranged and with naming folders.<br />
+C2MP4 is a Script which downloads and orders courses from several websites to local pc.<br />
 
 Prereq:<br />
 1. Powershell <br />
